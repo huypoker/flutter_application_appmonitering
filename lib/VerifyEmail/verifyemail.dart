@@ -34,9 +34,16 @@ class _VerifyScreenState extends State<VerifyScreen> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      body: Center(
-        child: Text('An email has been sent to ${user.emailVerified} please verify')
+      body: auth != null 
+      ? Center (
+        child: Container(
+          alignment: Alignment.center,
+          child: Text(user.emailVerified
+            ? "Email verified" 
+            : "Email not verified"), 
+        ),
       )
+      : Text
     );
   }
 

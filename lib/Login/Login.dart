@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_appmonitering/ResetPassword/reset.dart';
 import 'package:flutter_application_appmonitering/services/authenications_services/auth_services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -141,18 +142,15 @@ class _LoginState extends State<Login> {
                               ),
                       ),
                         ),
-                      SizedBox(height: 10),
-                      GestureDetector(
-                        onTap: () => Container(),
-                        child: Text(
-                          "Quên mật khẩu?", 
-                          style: GoogleFonts.montserrat(
-                             color: Colors.grey[600] , 
-                             fontWeight: FontWeight.bold
-                             ),
-                            ),
+                      SizedBox(height: 1),
+                      Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ResetScreen())),
+                          child: Text('Forgot Password?'))
+                       ]
                       ), 
-                      SizedBox(height:20),
+                      SizedBox(height:1),
                       GestureDetector(
                         onTap: () => widget.toggleScreen(),
                         child: Text(

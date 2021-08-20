@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_appmonitering/Homepage/Homescreen.dart';
+import 'package:flutter_application_appmonitering/Profile/profile_view.dart';
 
 
 
@@ -38,7 +39,7 @@ class NavigationDrawer extends StatelessWidget {
                   ),
                   const SizedBox(height:16),
                   buildMenuItem(
-                    text: 'Item2',
+                    text: 'My account',
                     icon: Icons.people,
                     onClicked: () => selectedItem(context, 1),
                   ),
@@ -142,6 +143,16 @@ class NavigationDrawer extends StatelessWidget {
       case 0:
       Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => HomeScreen(),
+      ));
+      break;
+      case 1:
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ProfileView(),
+      ));
+      break;
+      case 2:
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => Container(),
       ));
       break;
       case 5:
