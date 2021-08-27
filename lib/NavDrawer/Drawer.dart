@@ -1,26 +1,27 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_appmonitering/Homepage/Homescreen.dart';
 import 'package:flutter_application_appmonitering/Profile/profile_view.dart';
+import 'package:flutter_application_appmonitering/Settings/settings.dart';
 
 
 
 class NavigationDrawer extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
+  var currentUser = FirebaseAuth.instance.currentUser;
+
+
   @override
-  Widget build(BuildContext context) {
-    final name = 'Sarah Abs';
-    final email = 'sarah@abs.com';
-    final urlImage = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fbbbootstrap.com%2Fsnippets%2Fbootstrap-5-myprofile-90806631&psig=AOvVaw3vMKfUYZRsf8LEq43Nq261&ust=1624411401713000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCPjWmpeKqvECFQAAAAAdAAAAABAD';
+  Widget build(BuildContext context) {   
+    final email = currentUser.email;
     return Drawer(
       child: Material(
         color: Colors.white,
         child: ListView(
           children: <Widget>[
             buildHeader(
-              urlImage : urlImage,
-              name : name,
               email : email,
               onClicked: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => Container(
@@ -30,7 +31,7 @@ class NavigationDrawer extends StatelessWidget {
             Container(
               padding: padding,
               child: Column(
-                children: [
+                children:  [
                   const SizedBox(height:16),
                   buildMenuItem(
                     text: 'Homepage',
@@ -87,8 +88,6 @@ class NavigationDrawer extends StatelessWidget {
 
 
   Widget buildHeader({
-    @required String urlImage,
-    @required String name,
     @required String email,
     @required VoidCallback onClicked,
   }) =>
@@ -98,15 +97,11 @@ class NavigationDrawer extends StatelessWidget {
           padding: padding.add(EdgeInsets.symmetric(vertical: 40)),
           child: Row(
             children: [
-              CircleAvatar(radius: 30, backgroundImage: NetworkImage(urlImage)),
               SizedBox(width: 20),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    name,
-                    style: TextStyle(fontSize: 20, color: Colors.black),
-                  ),
+    
                   const SizedBox(height:4),
                   Text(
                     email,
@@ -157,7 +152,7 @@ class NavigationDrawer extends StatelessWidget {
       break;
       case 5:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Container()
+        builder: (context) => Settings()
         ));
       break;
       case 7:

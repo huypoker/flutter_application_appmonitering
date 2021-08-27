@@ -10,16 +10,10 @@ class AuthServices with ChangeNotifier {
   String get errorMessage => _errorMessage;
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   
-  
 
   //GetUID
-    getCurrentUser() {
-    final User user = firebaseAuth.currentUser;
-    final  uid = user.uid.toString();
-    return uid;
-  }
+  
   //Get Current User
- 
   
 
   //GET SIGN UP

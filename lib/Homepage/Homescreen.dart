@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_appmonitering/Login/Login.dart';
 import 'package:flutter_application_appmonitering/NavDrawer/Drawer.dart';
 
-
-
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 

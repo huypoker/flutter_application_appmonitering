@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_appmonitering/services/Provider.dart';
+
 
 class ProfileView extends StatefulWidget {
 
@@ -18,7 +18,7 @@ class _ProfileViewState extends State<ProfileView> {
         child: Column(
           children: <Widget>[
             FutureBuilder(
-              future: Provider.of(context).auth.getCurrentUser(),
+             // future: Provider.of(context).auth.getCurrentUser(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done){
                   return displayUserInformation(context, snapshot);
@@ -48,11 +48,8 @@ class _ProfileViewState extends State<ProfileView> {
           padding: const EdgeInsets.all(8.0),
           child: Text("Email: ${user.email ?? 'Anonymous'}", style: TextStyle(fontSize:20),)
         ),
-         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text("Password: ${user.password ?? 'Anonymous'}", style: TextStyle(fontSize:20),)
-        ),
-        showSignOut(context,user.isAnonymous),
+    
+        
         RaisedButton(
           child: Text("Edit Infomation"),
           onPressed:() {
@@ -63,27 +60,6 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 
-  Widget showSignOut(context, bool isAnonymous) {
-    if (isAnonymous == true) {
-      return RaisedButton(
-        child: Text("Sign in to save your data"),
-        onPressed: (){
-          Navigator.of(context).pushNamed('/convertUser');
-        }
-      );
-    } else{
-      return RaisedButton(
-        child: Text("Sign out"),
-        onPressed: () async {
-          try{
-            await Provider.of(context).auth.logout();
-          } catch(e){
-            print(e);
-          }
-        }
-      );
-    }
-  }
 
   void _userEditBottomSheet (BuildContext context) {
     
