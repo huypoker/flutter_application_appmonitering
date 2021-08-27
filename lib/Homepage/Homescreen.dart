@@ -1,17 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_appmonitering/Login/Login.dart';
 import 'package:flutter_application_appmonitering/NavDrawer/Drawer.dart';
-import 'package:flutter_application_appmonitering/services/authenications_services/auth_services.dart';
-
-
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final loginProvider = Provider.of<AuthServices>(context);
+    
     return Scaffold(
         drawer : NavigationDrawer(),
         extendBodyBehindAppBar: true,
@@ -23,9 +21,26 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [
-            IconButton(
-              icon: Icon(Icons.logout_outlined),
-              onPressed: () async => await loginProvider.logout(),
+            DropdownButton(
+              items: [
+                DropdownMenuItem(child: Container(
+                  child: Row(
+                    children: <Widget> [
+                      Icon(Icons.exit_to_app),
+                      SizedBox(width:8),
+                      Text('Logout'),
+                    ],
+                  ),
+                ),
+                value: 'logout'
+                )
+              ],
+              onChanged: (itemIdentifier){
+                if (itemIdentifier =='logout'){
+                  FirebaseAuth.instance.signOut();
+                  Navigator.push(context, MaterialPageRoute(builder:(context) => Login()));
+                }
+              } ,
             )
           ],
         ),
@@ -357,8 +372,8 @@ class HomeScreen extends StatelessWidget {
               backgroundColor: Colors.red
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
+              icon: Icon(Icons.people),
+              title: Text('Profile'),
               backgroundColor: Colors.red
             ),
            ],

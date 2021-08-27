@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,8 +8,15 @@ class AuthServices with ChangeNotifier {
   String _errorMessage;
   bool get isLoading => _isLoading;
   String get errorMessage => _errorMessage;
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  
 
+  //GetUID
+  
+  //Get Current User
+  
+
+  //GET SIGN UP
   Future register (String email, String password) async {
     setLoading(true);
     try {
@@ -27,7 +34,7 @@ class AuthServices with ChangeNotifier {
     notifyListeners();
   }
 
-
+  //GET SIGN IN
   Future login (String email, String password) async {
     setLoading(true);
     try {
@@ -43,10 +50,12 @@ class AuthServices with ChangeNotifier {
       setMessage(e.message);
     }
     notifyListeners();
+
+    
   }
 
   Future logout() async {
-    await firebaseAuth.signOut();
+    await FirebaseAuth.instance.signOut();
   }
 
   void setLoading(val){
@@ -58,6 +67,9 @@ class AuthServices with ChangeNotifier {
     notifyListeners();
   }
 
+
   Stream<User> get user => 
     firebaseAuth.authStateChanges().map((event) => event);
+
 }
+
