@@ -64,11 +64,11 @@ class _LoginState extends State<Login> {
                         SizedBox(height: 5),
                         Container(
                           width: 300,
-                         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color: Colors.white70
-                            ),
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white70
+                              ),
                           child: TextFormField(
                             controller: _emailController,
                             validator: (val) => 

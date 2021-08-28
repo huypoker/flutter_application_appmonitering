@@ -1,4 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_appmonitering/Models/User.dart';
+import 'package:flutter_application_appmonitering/services/authenications_services/auth_services.dart';
+import 'package:flutter_application_appmonitering/services/authenications_services/firestore_service.dart';
+import 'package:provider/provider.dart';
+
+import 'inforuser_list.dart';
 
 
 class ProfileView extends StatefulWidget {
@@ -9,59 +17,23 @@ class ProfileView extends StatefulWidget {
 
 
 class _ProfileViewState extends State<ProfileView> {
+  final AuthServices _auth = AuthServices();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: <Widget>[
-            FutureBuilder(
-             // future: Provider.of(context).auth.getCurrentUser(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done){
-                  return displayUserInformation(context, snapshot);
-              } else {
-                 return CircularProgressIndicator();
-              }
-            }
-            )
-          ],
-        ),
-      )
+    return StreamProvider<QuerySnapshot>.value(
+      value: FirestoreService().ManagerInforUser,
+      initialData: null,
+      child: Scaffold(
+       backgroundColor: Colors.white,
+       appBar: AppBar(
+         title: Text('Profile'),
+         backgroundColor: Colors.blue,
+         elevation: 0.0,
+       ),
+       body: InforUserList(),
+      ),
     );
-  }
-
-  Widget displayUserInformation (context, snapshot) {
-    final user = snapshot.data;
-
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            "Name: ${user.displayName ?? 'Anonymous'}", style: TextStyle(fontSize:20),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text("Email: ${user.email ?? 'Anonymous'}", style: TextStyle(fontSize:20),)
-        ),
-    
-        
-        RaisedButton(
-          child: Text("Edit Infomation"),
-          onPressed:() {
-            _userEditBottomSheet(context);
-          }
-        )
-      ]
-    );
-  }
-
-
-  void _userEditBottomSheet (BuildContext context) {
-    
   }
 }

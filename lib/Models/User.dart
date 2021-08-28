@@ -1,29 +1,8 @@
 
-class User {
-  final String id;
-  final String email;
-  final String photoUrl;
+class UserData {
+  final String uid;
   final String displayName;
+  final String password;
 
-  User(
-    this.id,
-    this.email,
-    this.photoUrl,
-    this.displayName,
-  );
-
-  User.fromData(Map<String, dynamic> data)
-    : id = data["id"],
-      email = data['email'],
-      displayName = data['displayName'],
-      photoUrl = data['photoUrl'];
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'displayName': displayName,
-      'email': email,
-      'photoUrl': photoUrl,
-    };
-  }
+  UserData({ this.uid, this.displayName, this.password });
 }
