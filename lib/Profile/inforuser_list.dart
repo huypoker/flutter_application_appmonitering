@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_appmonitering/Models/user.dart';
 import 'package:flutter_application_appmonitering/main.dart';
 import 'package:flutter_application_appmonitering/services/authenications_services/firestore_service.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class InforUserList extends StatefulWidget {
@@ -31,11 +32,18 @@ class _InforUserListState extends State<InforUserList> {
             key: _formKey,
             child: Column(
               children: <Widget>[
-                Text(
-                  'Update your profile.',
-                  style: TextStyle(fontSize: 18.0),
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 20, top: 10),
+                      child: Text("Display Name:",style: GoogleFonts.montserrat(
+                        color: Color(0xFF6b8ae7), 
+                        fontSize: 18, 
+                        fontWeight: FontWeight.bold),
+                        ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 20.0),
                 Container(
                   width: 400,
                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

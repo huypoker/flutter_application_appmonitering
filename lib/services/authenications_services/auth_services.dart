@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:flutter_application_appmonitering/services/authenications_services/firestore_service.dart';
 
 class AuthServices with ChangeNotifier {

@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_appmonitering/FAQ/Faq_view.dart';
+import 'package:flutter_application_appmonitering/History/history_chart.dart';
 import 'package:flutter_application_appmonitering/Homepage/Homescreen.dart';
 import 'package:flutter_application_appmonitering/Profile/profile_view.dart';
 import 'package:flutter_application_appmonitering/Settings/setting.dart';
@@ -46,7 +48,7 @@ class NavigationDrawer extends StatelessWidget {
                   buildMenuItem(
                     text: 'History',
                     icon: Icons.timelapse_outlined,
-                    onClicked: () => selectedItem(context, 3),
+                    onClicked: () => selectedItem(context, 2),
                   ),
                   const SizedBox(height:16),
                   buildMenuItem(
@@ -145,7 +147,7 @@ class NavigationDrawer extends StatelessWidget {
       break;
       case 2:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Container(),
+        builder: (context) => HistoryChart(),
       ));
       break;
       case 5:
@@ -155,7 +157,7 @@ class NavigationDrawer extends StatelessWidget {
       break;
       case 7:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Container()
+        builder: (context) => FaqView()
         ));
       break;
       

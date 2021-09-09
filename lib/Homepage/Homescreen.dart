@@ -270,7 +270,7 @@ class HomeScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                  'pH',
+                                  'Flow',
                                   style: GoogleFonts.lato(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -279,7 +279,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   SizedBox(width: 10,),
                                   Text(
-                                    '~ 5',
+                                    '2.47',
                                     style: GoogleFonts.lato(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
@@ -287,7 +287,7 @@ class HomeScreen extends StatelessWidget {
                                     )
                                   ),
                                   Text(
-                                    '',
+                                    'm3/h',
                                     style: GoogleFonts.lato(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,
@@ -313,7 +313,7 @@ class HomeScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Text(
-                                  'pH',
+                                  'TDS',
                                   style: GoogleFonts.lato(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
@@ -322,7 +322,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   SizedBox(width: 10,),
                                   Text(
-                                    '~ 5',
+                                    '30.57',
                                     style: GoogleFonts.lato(
                                       fontSize: 25,
                                       fontWeight: FontWeight.bold,
@@ -330,7 +330,7 @@ class HomeScreen extends StatelessWidget {
                                     )
                                   ),
                                   Text(
-                                    '',
+                                    'mg/l',
                                     style: GoogleFonts.lato(
                                       fontSize: 14,
                                       fontWeight: FontWeight.bold,

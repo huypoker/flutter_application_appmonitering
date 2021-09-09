@@ -11,11 +11,12 @@ class FirestoreService {
   final String password;
   FirestoreService ({this.uid, this.password});
   final CollectionReference userCollection = FirebaseFirestore.instance.collection('ManagerInforUser');
-
+  final CollectionReference faqCollection = FirebaseFirestore.instance.collection('Faq');
+  
+  
   Future<void> updateUserData(String name) async {
     return await userCollection.doc(uid).set({
       'displayName': name,
-
     });
   }
   Stream<QuerySnapshot> get ManagerInforUser {
@@ -34,4 +35,5 @@ class FirestoreService {
     return userCollection.doc(uid).snapshots()
     .map(_userDataFromSnapshot);
   }
+
 }
