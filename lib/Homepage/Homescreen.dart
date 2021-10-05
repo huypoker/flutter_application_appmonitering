@@ -1,15 +1,31 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_appmonitering/Login/Login.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_application_appmonitering/NavDrawer/Drawer.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderStateMixin {
+  final dbref = FirebaseDatabase.instance.reference();
+  bool value = false;
+ 
+  onUpdate() {
+    setState(() {
+      value = !value;
+    });
+  }
+
+  static final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    
+    // ignore: unnecessary_statements
+    debugShowCheckedModeBanner: false;
     return Scaffold(
         drawer : NavigationDrawer(),
         extendBodyBehindAppBar: true,
@@ -20,31 +36,9 @@ class HomeScreen extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          actions: [
-            DropdownButton(
-              items: [
-                DropdownMenuItem(child: Container(
-                  child: Row(
-                    children: <Widget> [
-                      Icon(Icons.exit_to_app),
-                      SizedBox(width:8),
-                      Text('Logout'),
-                    ],
-                  ),
-                ),
-                value: 'logout'
-                )
-              ],
-              onChanged: (itemIdentifier){
-                if (itemIdentifier =='logout'){
-                  FirebaseAuth.instance.signOut();
-                  Navigator.push(context, MaterialPageRoute(builder:(context) => Login()));
-                }
-              } ,
-            )
-          ],
         ),
         body: Container(
+          key: _scaffoldKey,
           child: Stack(
             children: [
               Container(
@@ -123,262 +117,261 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Column(
-                      children: <Widget> [
-                        Container(
-                          margin:EdgeInsets.symmetric(vertical: 20),
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey,
-                            )
-                          )
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    StreamBuilder(
+                      stream: dbref.child("ESP8266").onValue,
+                      builder: (context, snapshot) {
+                          if (snapshot.hasData &&
+                          !snapshot.hasError &&
+                          snapshot.data.snapshot.value != null) {
+                            return Column(
                             children: <Widget> [
-                              Column(
-                                children:[
-                                  Text(
-                                  'Temp',
-                                  style: GoogleFonts.lato(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    )
-                                  ),
-                                  SizedBox(width: 10,),
-                                  Text(
-                                    '10',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Text(
-                                    '\u2103',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.white38,
-                                      ),
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.greenAccent,
-                                      ),
-                                    ],
-                                  ),
-                                ]
+                              Container(
+                                margin:EdgeInsets.symmetric(vertical: 20),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.grey,
+                                  )
+                                )
                               ),
-                              Column(
-                                children: [
-                                  Text(
-                                  'Warter speed',
-                                  style: GoogleFonts.lato(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    )
-                                  ),
-                                  SizedBox(width: 10,),
-                                  Text(
-                                    '15',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Text(
-                                    'km/h',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.white38,
-                                      ),
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.greenAccent,
-                                      ),
-                                    ],
-                                  ),
-                                ]
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                  'pH',
-                                  style: GoogleFonts.lato(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    )
-                                  ),
-                                  SizedBox(width: 10,),
-                                  Text(
-                                    '~ 5',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Text(
-                                    '',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.white38,
-                                      ),
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.greenAccent,
-                                      ),
-                                    ],
-                                  ),
-                                ]
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                  'Flow',
-                                  style: GoogleFonts.lato(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    )
-                                  ),
-                                  SizedBox(width: 10,),
-                                  Text(
-                                    '2.47',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Text(
-                                    'm3/h',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.white38,
-                                      ),
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.greenAccent,
-                                      ),
-                                    ],
-                                  ),
-                                ]
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                  'TDS',
-                                  style: GoogleFonts.lato(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
-                                    )
-                                  ),
-                                  SizedBox(width: 10,),
-                                  Text(
-                                    '30.57',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Text(
-                                    'mg/l',
-                                    style: GoogleFonts.lato(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    )
-                                  ),
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.white38,
-                                      ),
-                                      Container(
-                                        height: 3,
-                                        width: 50,
-                                        color: Colors.greenAccent,
-                                      ),
-                                    ],
-                                  ),
-                                ]
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: <Widget> [
+                                    Column(
+                                      children:[
+                                        Text(
+                                        'Temp',
+                                        style: GoogleFonts.lato(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          )
+                                        ),
+                                        SizedBox(width: 10,),
+                                        Text(snapshot.data.snapshot.value["Temperature"]["data"].toString(),
+                                          style: GoogleFonts.lato(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Text(
+                                          '\u2103',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.white38,
+                                            ),
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.greenAccent,
+                                            ),
+                                          ],
+                                        ),
+                                      ]
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                        'Warter speed',
+                                        style: GoogleFonts.lato(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          )
+                                        ),
+                                        SizedBox(width: 10,),
+                                        Text(
+                                          '15',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Text(
+                                          'km/h',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.white38,
+                                            ),
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.greenAccent,
+                                            ),
+                                          ],
+                                        ),
+                                      ]
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                        'pH',
+                                        style: GoogleFonts.lato(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          )
+                                        ),
+                                        SizedBox(width: 10,),
+                                        Text(
+                                          '~ 5',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Text(
+                                          '',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.white38,
+                                            ),
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.greenAccent,
+                                            ),
+                                          ],
+                                        ),
+                                      ]
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                        'Flow',
+                                        style: GoogleFonts.lato(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          )
+                                        ),
+                                        SizedBox(width: 10,),
+                                        Text(
+                                          '2.47',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Text(
+                                          'm3/h',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.white38,
+                                            ),
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.greenAccent,
+                                            ),
+                                          ],
+                                        ),
+                                      ]
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                        'TDS',
+                                        style: GoogleFonts.lato(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
+                                          )
+                                        ),
+                                        SizedBox(width: 10,),
+                                        Text(
+                                          '30.57',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Text(
+                                          'mg/l',
+                                          style: GoogleFonts.lato(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black,
+                                          )
+                                        ),
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.white38,
+                                            ),
+                                            Container(
+                                              height: 3,
+                                              width: 50,
+                                              color: Colors.greenAccent,
+                                            ),
+                                          ],
+                                        ),
+                                      ]
+                                    ),
+                                  ]
+                                ),
                               ),
                             ]
-                          ),
-                        ),
-                      ]
+                          );
+                        } else {}
+                        return Container();
+                      }
                     ),
                   ],
                 )
               ),
             ]
           ),
-        ),
-         bottomNavigationBar: BottomNavigationBar(
-          items: [ 
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-              backgroundColor: Colors.red
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              title: Text('Profile'),
-              backgroundColor: Colors.red
-            ),
-           ],
-        ),
+        ),   
     );
   }
-
+  Future<void> readData() async {
+    dbref.child("Data").once().then((DataSnapshot snapshot) {
+      print(snapshot.value);
+    });
+  }
 }

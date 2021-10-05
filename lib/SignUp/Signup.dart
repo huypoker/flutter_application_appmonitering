@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_appmonitering/Login/FrostedGlassBox.dart';
 import 'package:flutter_application_appmonitering/services/authenications_services/auth_services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +33,8 @@ class _SignupState extends State<Signup> {
     super.dispose();
   }
   Widget build(BuildContext context) {
+     // ignore: unnecessary_statements
+    debugShowCheckedModeBanner: false;
     final loginProvider = Provider.of<AuthServices>(context);
     Size size = MediaQuery.of(context).size;
     double contWidth = size.width * 0.90;

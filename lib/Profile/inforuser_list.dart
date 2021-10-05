@@ -58,6 +58,7 @@ class _InforUserListState extends State<InforUserList> {
                   ),
                 ),
                 SizedBox(height: 10.0),
+                // ignore: deprecated_member_use
                 RaisedButton(
                   color: Colors.pink[400],
                   child: Text(

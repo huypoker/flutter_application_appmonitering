@@ -8,6 +8,7 @@ import 'package:flutter_application_appmonitering/Settings/setting.dart';
 
 
 
+// ignore: must_be_immutable
 class NavigationDrawer extends StatelessWidget {
   final padding = EdgeInsets.symmetric(horizontal: 20);
   var currentUser = FirebaseAuth.instance.currentUser;

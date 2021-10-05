@@ -19,6 +19,7 @@ class FirestoreService {
       'displayName': name,
     });
   }
+  // ignore: non_constant_identifier_names
   Stream<QuerySnapshot> get ManagerInforUser {
       return userCollection.snapshots();
   }

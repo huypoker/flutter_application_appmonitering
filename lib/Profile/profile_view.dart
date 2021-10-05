@@ -16,7 +16,6 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   final AuthServices _auth = AuthServices();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
