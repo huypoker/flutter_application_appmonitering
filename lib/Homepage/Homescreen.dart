@@ -1,10 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_application_appmonitering/NavDrawer/Drawer.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,18 +15,29 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderStateMixin {
   final dbref = FirebaseDatabase.instance.reference();
   bool value = false;
+  String _timeString;
  
+  @override
+  void initState() {
+    super.initState();
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+  }
+
+  void _getTime() {
+    final String formattedDateTime =
+        DateFormat('yyyy-MM-dd \n kk:mm:ss').format(DateTime.now()).toString();
+    setState(() {
+      _timeString = formattedDateTime;
+    });
+  }
   onUpdate() {
     setState(() {
       value = !value;
     });
   }
-
   static final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
-  Widget build(BuildContext context) {
-    // ignore: unnecessary_statements
-    debugShowCheckedModeBanner: false;
+  Widget build(BuildContext context) { 
     return Scaffold(
         drawer : NavigationDrawer(),
         extendBodyBehindAppBar: true,
@@ -38,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
           elevation: 0,
         ),
         body: Container(
-          key: _scaffoldKey,
+        
           child: Stack(
             children: [
               Container(
@@ -74,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                               ),
                               SizedBox(height: 1,),
                               Text(
-                                '07: 50 AM - Friday, 10 Feb 2021',
+                                _timeString.toString(),
                                 style: GoogleFonts.lato(
                                   fontSize: 13,
                                   fontWeight: FontWeight.bold,
@@ -83,36 +95,77 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                               ),
                             ],
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Very good',
-                                style: GoogleFonts.lato(
-                                  fontSize: 45,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green.shade700,
-                                )
-                              ),
-                              Row(
+                          StreamBuilder(
+                            stream: dbref.child("ESP8266").onValue,
+                            builder: (context, snapshot) {
+                            if (snapshot.hasData &&
+                            !snapshot.hasError &&
+                            // ignore: unrelated_type_equality_checks
+                            snapshot.data.snapshot.value["Temperature"]["data"].toString() != null) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  SvgPicture.asset(
-                                    'assets/icons/Giotnuoc.svg',
-                                     width: 30, 
-                                     height: 30
-                                    ),
-                                  SizedBox(width: 10,),
                                   Text(
-                                    'Quaility water',
+                                    snapshot.data.snapshot.value["Temperature"]["data"] < 30 ? "not good" : "good",
                                     style: GoogleFonts.lato(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.black,
+                                      fontSize: 45,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green.shade700,
                                     )
                                   ),
-                                ],
-                              ),
-                            ]
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icons/Giotnuoc.svg',
+                                         width: 30, 
+                                         height: 30
+                                        ),
+                                      SizedBox(width: 10,),
+                                      Text(
+                                        'Quaility water',
+                                        style: GoogleFonts.lato(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.black,
+                                        )
+                                      ),
+                                    ],
+                                  ),
+                                ]
+                              );
+                             } else {}
+                               return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    ' Good',
+                                    style: GoogleFonts.lato(
+                                      fontSize: 45,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green.shade700,
+                                    )
+                                  ),
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/icons/Giotnuoc.svg',
+                                         width: 30, 
+                                         height: 30
+                                        ),
+                                      SizedBox(width: 10,),
+                                      Text(
+                                        'Quaility water',
+                                        style: GoogleFonts.lato(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.black,
+                                        )
+                                      ),
+                                    ],
+                                  ),
+                                ]
+                              );
+                            }
                           ),
                         ],
                       ),
@@ -149,7 +202,8 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                                           )
                                         ),
                                         SizedBox(width: 10,),
-                                        Text(snapshot.data.snapshot.value["Temperature"]["data"].toString(),
+                                        Text(
+                                          snapshot.data.snapshot.value["Temperature"]["data"].toString(),
                                           style: GoogleFonts.lato(
                                             fontSize: 25,
                                             fontWeight: FontWeight.bold,
@@ -192,7 +246,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                                         ),
                                         SizedBox(width: 10,),
                                         Text(
-                                          '15',
+                                          snapshot.data.snapshot.value["Speed"]["data 4"].toString(),
                                           style: GoogleFonts.lato(
                                             fontSize: 25,
                                             fontWeight: FontWeight.bold,
@@ -235,7 +289,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                                         ),
                                         SizedBox(width: 10,),
                                         Text(
-                                          '~ 5',
+                                          snapshot.data.snapshot.value["pH"]["data 2"].toString(),
                                           style: GoogleFonts.lato(
                                             fontSize: 25,
                                             fontWeight: FontWeight.bold,
@@ -278,7 +332,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                                         ),
                                         SizedBox(width: 10,),
                                         Text(
-                                          '2.47',
+                                          snapshot.data.snapshot.value["Flow"]["data 5"].toString(),
                                           style: GoogleFonts.lato(
                                             fontSize: 25,
                                             fontWeight: FontWeight.bold,
@@ -321,7 +375,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                                         ),
                                         SizedBox(width: 10,),
                                         Text(
-                                          '30.57',
+                                          snapshot.data.snapshot.value["TDS"]["data 3"].toString(),
                                           style: GoogleFonts.lato(
                                             fontSize: 25,
                                             fontWeight: FontWeight.bold,
@@ -370,7 +424,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
     );
   }
   Future<void> readData() async {
-    dbref.child("Data").once().then((DataSnapshot snapshot) {
+    dbref.child("ESP8266").once().then((DataSnapshot snapshot) {
       print(snapshot.value);
     });
   }

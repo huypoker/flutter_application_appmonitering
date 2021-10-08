@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_appmonitering/Homepage/Homescreen.dart';
 
 import 'package:flutter_application_appmonitering/Login/Login.dart';
 import 'package:flutter_application_appmonitering/NavDrawer/Drawer.dart';
@@ -41,7 +42,7 @@ class _SettingsState extends State<Settings> {
         title: Text("Settings", style: TextStyle(fontSize:22)),
         leading: IconButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context) => NavigationDrawer()));
+            Navigator.push(context, MaterialPageRoute(builder:(context) => HomeScreen()));
           },
           icon: Icon(
             Icons.arrow_back,

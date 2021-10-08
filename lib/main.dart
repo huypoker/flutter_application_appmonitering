@@ -11,6 +11,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+     // ignore: unnecessary_statements
+    debugShowCheckedModeBanner: false;
     return FutureBuilder(
       // Initialize FlutterFire
       future: Firebase.initializeApp(),

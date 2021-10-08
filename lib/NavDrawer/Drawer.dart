@@ -24,6 +24,7 @@ class NavigationDrawer extends StatelessWidget {
           children: <Widget>[
             buildHeader(
               email : email,
+              
               onClicked: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => Container(
                 )
@@ -50,13 +51,7 @@ class NavigationDrawer extends StatelessWidget {
                     text: 'History',
                     icon: Icons.timelapse_outlined,
                     onClicked: () => selectedItem(context, 2),
-                  ),
-                  const SizedBox(height:16),
-                  buildMenuItem(
-                    text: 'Item4',
-                    icon: Icons.people,
-                    onClicked: () => selectedItem(context, 4),
-                  ),
+                  ),      
                   const SizedBox(height:24),
                   Divider(color: Colors.grey[600]),
                   const SizedBox(height:16),
@@ -66,11 +61,11 @@ class NavigationDrawer extends StatelessWidget {
                     onClicked: () => selectedItem(context, 5),
                   ),
                   const SizedBox(height:16),
-                  buildMenuItem(
-                    text: 'Notifications',
-                    icon: Icons.notification_important_outlined,
-                    onClicked: () => selectedItem(context, 6),
-                  ),
+                //  buildMenuItem(
+                 //   text: 'Notifications',
+                  //  icon: Icons.notification_important_outlined,
+                  //  onClicked: () => selectedItem(context, 6),
+                 // ),
                   const SizedBox(height:16),
                   buildMenuItem(
                     text: 'FAQ',
@@ -148,7 +143,7 @@ class NavigationDrawer extends StatelessWidget {
       break;
       case 2:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => HistoryChart(),
+        builder: (context) => Chart(),
       ));
       break;
       case 5:

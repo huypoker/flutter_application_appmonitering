@@ -68,9 +68,7 @@ class _InforUserListState extends State<InforUserList> {
                   onPressed: () async {
                     if(_formKey.currentState.validate()){
                       await FirestoreService(uid: user.uid).updateUserData(
-                  
-                        _currentName ?? snapshot.data.displayName, 
-                      
+                        _currentName ?? snapshot.data.displayName 
                       );
                       Navigator.pop(context);
                     }
