@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_application_appmonitering/NavDrawer/Drawer.dart';
 import 'package:flutter_application_appmonitering/Notifications/notification.dart';
+import 'package:flutter_application_appmonitering/services/authenications_services/firestore_service.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_application_appmonitering/Models/AlertNotification.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -16,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderStateMixin {
   final dbref = FirebaseDatabase.instance.reference();
+  final db = FirestoreService();
   bool value = false;
   String status = 'No data';
   int currentTimestamp = 0;
@@ -54,16 +57,35 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: [
-            Badge(
-              badgeContent: Text('3'),
-              padding: EdgeInsets.all(10),
-              child: IconButton(
-                icon: Icon(Icons.notification_important),
-                onPressed:() => {
-                  Navigator.of(context).push(MaterialPageRoute(
-                   builder: (context) => Notifications())),
+            StreamBuilder<List<AlertNotification>>(
+              stream: FirestoreService().alertNotifications,
+              builder: (context, snapshot) {
+
+                if (snapshot.hasData) {
+                  return Badge(
+                    badgeContent: Text(snapshot.data.length.toString()),
+                    padding: EdgeInsets.all(10),
+                    child: IconButton(
+                      icon: Icon(Icons.notification_important),
+                      onPressed:() => {
+                        Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Notifications())),
+                      }
+                    ),
+                  );
                 }
-              ),
+
+                  return Badge(
+                    padding: EdgeInsets.all(10),
+                    child: IconButton(
+                      icon: Icon(Icons.notification_important),
+                      onPressed:() => {
+                        Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => Notifications())),
+                      }
+                    ),
+                  );
+              }
             ),
           ],
         ),
@@ -83,8 +105,14 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                 if (data.isNotNull()) {
                   if (data.temperature < 40 && data.ph >= 5.5 && data.ph <= 9 && data.tds < 500)
                     status = 'Good';
-                  else
+                  else {
+                    final datetime = DateTime.now();
+                    db.addNewNotification(AlertNotification(
+                      title: 'Cảnh báo tại trạm 1',
+                      subtitle: '${datetime.day}/${datetime.month}/${datetime.year} ${datetime.hour}:${datetime.minute} - nước thải tại trạm 1 không đạt chuẩn'
+                    ));
                     status = 'Not good';
+                  }
                   currentTimestamp = timestamp;
                 }
               }

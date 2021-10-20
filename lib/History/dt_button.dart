@@ -12,11 +12,13 @@ class DTButton extends StatefulWidget {
 
 class _DTButtonState extends State<DTButton> {
   String getDateTimeText() => '${_dtb_currentDateTime.day}/${_dtb_currentDateTime.month}/${_dtb_currentDateTime.year}';
+  // ignore: non_constant_identifier_names
   DateTime _dtb_currentDateTime;
   DateTime get dateTime => _dtb_currentDateTime;
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     DateTime currentDatetime = DateTime.now();

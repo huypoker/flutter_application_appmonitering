@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_appmonitering/Homepage/Homescreen.dart';
+import 'package:flutter_application_appmonitering/Models/AlertNotification.dart';
+import 'package:flutter_application_appmonitering/services/authenications_services/firestore_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Notifications extends StatelessWidget {
@@ -21,43 +23,37 @@ class Notifications extends StatelessWidget {
           )
         ) 
       ),
-      body: ListView(
-        children: <Widget>[
-          Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: [
-                ListTile(
-                  title: const Text('Canh bao tai tram 1'),
-                  subtitle: Text('Ngay xx/yy/zz nuoc thai tai tram 1 ko dat chuan'),
-                )
-              ],
-            ),
-          ),
-          SizedBox(height:3),
-          Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: [
-                ListTile(
-                  title: const Text('Canh bao tai tram 1'),
-                  subtitle: Text('Ngay xx/yy/zz nuoc thai tai tram 1 ko dat chuan'),
-                )
-              ],
-            ),
-          ),
-          Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
-              children: [
-                ListTile(
-                  title: const Text('Canh bao tai tram 1'),
-                  subtitle: Text('Ngay xx/yy/zz nuoc thai tai tram 1 ko dat chuan'),
-                )
-              ],
-            ),
-          ),
-        ]
+      body: StreamBuilder<List<AlertNotification>>(
+        stream: FirestoreService().alertNotifications,
+        builder: (context, snapshot) {
+
+          if (snapshot.hasData) {
+
+            final list = snapshot.data;
+
+            return ListView.builder(
+              scrollDirection: Axis.vertical,
+              physics: BouncingScrollPhysics(),
+              itemCount: list.length,
+              itemBuilder: (context, index) => 
+              Card(
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text(list[index].title),
+                      subtitle: Text(list[index].subtitle),
+                    )
+                  ],
+                ),
+              ),
+            );
+          }
+
+          return Container(
+            child: Center(child: Text('No alerts')),
+          );
+        }
       ),
     );
   }

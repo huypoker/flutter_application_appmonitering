@@ -30,6 +30,7 @@ class _HistoryChartState extends State<HistoryChart> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     super.initState();
     initializeDateFormatting();
