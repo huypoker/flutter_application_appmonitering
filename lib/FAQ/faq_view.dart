@@ -41,11 +41,11 @@ class _FaqViewState extends State<FaqView> {
                         ),
                       ],
                     ),
-                  ),
+                  ),                  
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 7),
-                      child: Text(snapshot.data.docs[0]['sub'],style: TextStyle(color: Colors.black, fontSize: 20)
+                      margin: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(snapshot.data.docs[0]['sub'],style: TextStyle(color: Colors.black, fontSize: 15)
                     ),
                     )
                   ],
@@ -60,19 +60,19 @@ class _FaqViewState extends State<FaqView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "Question 1", style: TextStyle(color: Colors.blueAccent.shade700, fontSize: 25)
+                          "Question 2", style: TextStyle(color: Colors.blueAccent.shade700, fontSize: 25)
                         ),
                         SizedBox(height: 10),
                         Text(
-                          snapshot.data.docs[0]['title'], style: TextStyle(color: Colors.blueAccent, fontSize: 20),
+                          snapshot.data.docs[1]['title'], style: TextStyle(color: Colors.blueAccent, fontSize: 20),
                         ),
                       ],
                     ),
                   ),
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 7),
-                      child: Text(snapshot.data.docs[0]['sub'],style: TextStyle(color: Colors.black, fontSize: 20)
+                      margin: EdgeInsets.symmetric(horizontal: 15),
+                      child: Text(snapshot.data.docs[1]['sub'],style: TextStyle(color: Colors.black, fontSize: 15)
                     ),
                     )
                   ],

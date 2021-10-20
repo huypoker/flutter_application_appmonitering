@@ -5,6 +5,7 @@ import 'package:flutter_application_appmonitering/Homepage/Homescreen.dart';
 
 import 'package:flutter_application_appmonitering/Login/Login.dart';
 import 'package:flutter_application_appmonitering/NavDrawer/Drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Settings extends StatefulWidget {
 
@@ -39,7 +40,9 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings", style: TextStyle(fontSize:22)),
+        title: Text("Settings", style:  GoogleFonts.montserrat(
+          fontSize:22)
+        ),
         leading: IconButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder:(context) => HomeScreen()));
@@ -62,7 +65,9 @@ class _SettingsState extends State<Settings> {
                   color: Colors. blue,
                 ),
                 SizedBox(width: 10),
-                Text("Notifications", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold))
+                Text("Notifications", style: GoogleFonts.montserrat(
+                  fontSize: 22, 
+                  fontWeight: FontWeight.bold))
               ]
             ),
             Divider(height: 20, thickness: 1),
@@ -83,7 +88,7 @@ class _SettingsState extends State<Settings> {
                   FirebaseAuth.instance.signOut();
                   Navigator.push(context, MaterialPageRoute(builder:(context) => Login()));
                 },
-                child: Text("SIGN OUT", style: TextStyle(
+                child: Text("SIGN OUT", style: GoogleFonts.montserrat(
                   fontSize: 16,
                   letterSpacing: 2.2,
                   color: Colors.black
@@ -102,7 +107,7 @@ class _SettingsState extends State<Settings> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: TextStyle(
+            Text(title, style: GoogleFonts.montserrat(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.grey[600]

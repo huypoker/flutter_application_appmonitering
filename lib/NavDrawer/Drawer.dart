@@ -143,7 +143,7 @@ class NavigationDrawer extends StatelessWidget {
       break;
       case 2:
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => Chart(),
+        builder: (context) => HistoryChart(),
       ));
       break;
       case 5:
