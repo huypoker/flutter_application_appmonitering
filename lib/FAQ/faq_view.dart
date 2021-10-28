@@ -15,6 +15,7 @@ class _FaqViewState extends State<FaqView> {
     return Scaffold(
       appBar: AppBar(
         title: Text("List FAQ"),
+        centerTitle: true,
 
     ),
     body: StreamBuilder(
@@ -24,8 +25,12 @@ class _FaqViewState extends State<FaqView> {
           return Text('no value');
         }
         return ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 10),       
           children: <Widget>[
             Card(
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20)
+              ),
               clipBehavior: Clip.antiAlias,
               child: ExpansionCard(
                   title: Container(
@@ -53,6 +58,9 @@ class _FaqViewState extends State<FaqView> {
             ),
             SizedBox(height:10),
             Card(
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20)
+              ),
               clipBehavior: Clip.antiAlias,
               child: ExpansionCard(
                   title: Container(

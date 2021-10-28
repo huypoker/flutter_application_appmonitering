@@ -23,12 +23,7 @@ class NavigationDrawer extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             buildHeader(
-              email : email,
-              
-              onClicked: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Container(
-                )
-              ))
+              email : email, 
             ),
             Container(
               padding: padding,
@@ -59,13 +54,7 @@ class NavigationDrawer extends StatelessWidget {
                     text: 'Settings',
                     icon: Icons.settings,
                     onClicked: () => selectedItem(context, 5),
-                  ),
-                  const SizedBox(height:16),
-                //  buildMenuItem(
-                 //   text: 'Notifications',
-                  //  icon: Icons.notification_important_outlined,
-                  //  onClicked: () => selectedItem(context, 6),
-                 // ),
+                  ),        
                   const SizedBox(height:16),
                   buildMenuItem(
                     text: 'FAQ',

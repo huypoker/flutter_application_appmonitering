@@ -108,8 +108,8 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                   else {
                     final datetime = DateTime.now();
                     db.addNewNotification(AlertNotification(
-                      title: 'Cảnh báo tại trạm 1',
-                      subtitle: '${datetime.day}/${datetime.month}/${datetime.year} ${datetime.hour}:${datetime.minute} - nước thải tại trạm 1 không đạt chuẩn'
+                      title: 'Warning at Han River Station',
+                      subtitle: '${datetime.day}/${datetime.month}/${datetime.year} ${datetime.hour}:${datetime.minute} - Wastewater quality at Han River station is not up to standard'
                     ));
                     status = 'Not good';
                   }
@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                                 children: [
                                   SizedBox(height: 100,),
                                   Text(
-                                    'Hang River',
+                                    'Han River',
                                     style: GoogleFonts.lato(
                                       fontSize: 35,
                                       fontWeight: FontWeight.w400,
@@ -332,7 +332,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                                               )
                                             ),
                                             Text(
-                                              'mg/l',
+                                              'mmg',
                                               style: GoogleFonts.lato(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold,

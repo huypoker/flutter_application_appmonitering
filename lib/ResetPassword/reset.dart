@@ -55,7 +55,7 @@ class _ResetScreenState extends State<ResetScreen> {
                             validator: (val) => 
                               val.isNotEmpty ? null : "Please enter email address",
                             decoration: InputDecoration(
-                              icon: Icon(Icons.email, color: Colors.indigo) ,
+                              icon: Icon(Icons.email, color: Colors.indigo),
                               border: InputBorder.none,
                               hintText: "Email",
                               hintStyle: GoogleFonts.montserrat(color: Colors.grey)

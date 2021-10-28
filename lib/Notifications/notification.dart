@@ -26,17 +26,18 @@ class Notifications extends StatelessWidget {
       body: StreamBuilder<List<AlertNotification>>(
         stream: FirestoreService().alertNotifications,
         builder: (context, snapshot) {
-
           if (snapshot.hasData) {
-
             final list = snapshot.data;
-
             return ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               scrollDirection: Axis.vertical,
               physics: BouncingScrollPhysics(),
               itemCount: list.length,
               itemBuilder: (context, index) => 
               Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)
+                ),
                 clipBehavior: Clip.antiAlias,
                 child: Column(
                   children: [
@@ -49,7 +50,6 @@ class Notifications extends StatelessWidget {
               ),
             );
           }
-
           return Container(
             child: Center(child: Text('No alerts')),
           );

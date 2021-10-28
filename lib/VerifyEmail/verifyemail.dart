@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_appmonitering/Homepage/Homescreen.dart';
+import 'package:flutter_application_appmonitering/Login/Login.dart';
 
 class VerifyScreen extends StatefulWidget {
 
@@ -20,7 +21,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     user = auth.currentUser;
     user.sendEmailVerification();
 
-    timer = Timer.periodic(Duration(seconds: 5), (timer){
+    timer = Timer.periodic(Duration(seconds: 3), (timer){
       checkEmailVerification();
     });
     super.initState();
@@ -34,6 +35,18 @@ class _VerifyScreenState extends State<VerifyScreen> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder:(context) => Login()));
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          )
+        )
+      ),
       body: auth != null 
       ? Center (
         child: Container(

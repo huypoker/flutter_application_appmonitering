@@ -59,11 +59,15 @@ class _InforUserListState extends State<InforUserList> {
                 ),
                 SizedBox(height: 10.0),
                 // ignore: deprecated_member_use
-                RaisedButton(
+                OutlineButton(
                   color: Colors.pink[400],
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)
+                  ),
                   child: Text(
                     'Update',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                   ),
                   onPressed: () async {
                     if(_formKey.currentState.validate()){

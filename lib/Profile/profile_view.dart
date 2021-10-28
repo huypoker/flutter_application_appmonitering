@@ -26,6 +26,7 @@ class _ProfileViewState extends State<ProfileView> {
        backgroundColor: Colors.white,
        appBar: AppBar(
          title: Text('Profile'),
+         centerTitle: true,
          backgroundColor: Colors.blue,
          elevation: 0.0,
        ),

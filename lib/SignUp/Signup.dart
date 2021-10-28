@@ -106,7 +106,7 @@ class _SignupState extends State<Signup> {
                         decoration: InputDecoration(
                           icon: Icon(Icons.lock, color: Colors.indigo),
                           border: InputBorder.none,
-                          hintText: "Mật khẩu",
+                          hintText: "Password",
                           hintStyle: GoogleFonts.montserrat(color: Colors.grey),
                           suffixIcon: IconButton(
                             icon:Icon(
