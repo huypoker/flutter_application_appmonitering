@@ -18,13 +18,13 @@ class _LoginState extends State<Login> {
   TextEditingController _emailController;
   TextEditingController _passwordController;
   final _formkey = GlobalKey<FormState>();
-  bool _passwordVisible;
+  bool _passwordVisible1;
 
   @override
   void initState() {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    _passwordVisible = false;
+    _passwordVisible1 = false;
     super.initState();
   }
 
@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
                       children: [
                         Container(
                           margin: EdgeInsets.only(top: 10),
-                          child: Text("Login",style: GoogleFonts.montserrat(
+                          child: Text("Login",style: GoogleFonts.lato(
                             color: Color(0xFF6B6B6B), 
                             fontSize: 35, 
                             fontWeight: FontWeight.bold),
@@ -80,7 +80,7 @@ class _LoginState extends State<Login> {
                                 icon: Icon(Icons.email, color: Colors.indigo) ,
                                 border: InputBorder.none,
                                 hintText: "Email",
-                                hintStyle: GoogleFonts.montserrat(color: Colors.grey)
+                                hintStyle: GoogleFonts.lato(color: Colors.grey)
                                 ),
                               ),    
                           ),
@@ -100,16 +100,16 @@ class _LoginState extends State<Login> {
                                   icon: Icon(Icons.lock, color: Colors.indigo),
                                   border: InputBorder.none,
                                   hintText: "Password",
-                                  hintStyle: GoogleFonts.montserrat(color: Colors.grey),
+                                  hintStyle: GoogleFonts.lato(color: Colors.grey),
                                   suffixIcon: IconButton(
                                       icon:Icon(
-                                        _passwordVisible
+                                        _passwordVisible1
                                         ?Icons.visibility:Icons.visibility_off,
                                         color:Theme.of(context).primaryColorLight
                                       ),
                                       onPressed:(){
                                         setState((){
-                                          _passwordVisible = !_passwordVisible;
+                                          _passwordVisible1 = !_passwordVisible1;
                                         });
                                       }
                                     )
@@ -151,7 +151,7 @@ class _LoginState extends State<Login> {
                            TextButton(onPressed: () => 
                            Navigator.of(context).push(MaterialPageRoute(
                              builder: (context) => ResetScreen())),
-                            child: Text('Forgot Password?', style:GoogleFonts.montserrat(
+                            child: Text('Forgot Password?', style:GoogleFonts.lato(
                               fontSize: 13,
                               fontWeight: FontWeight.bold
                             ),))
@@ -162,7 +162,7 @@ class _LoginState extends State<Login> {
                           onTap: () => widget.toggleScreen(),
                           child: Text(
                             "Do not have an account?",  
-                          style: GoogleFonts.montserrat(
+                          style: GoogleFonts.lato(
                             color: Colors.red[800],
                             fontSize: 13,
                             fontWeight: FontWeight.bold

@@ -1,6 +1,7 @@
 import 'package:expansion_card/expansion_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FaqView extends StatefulWidget {
 
@@ -38,11 +39,13 @@ class _FaqViewState extends State<FaqView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "Question 1", style: TextStyle(color: Colors.blueAccent.shade700, fontSize: 25)
+                          "Question 1", style: GoogleFonts.lato(
+                            color: Colors.blueAccent.shade700, 
+                            fontSize: 25)
                         ),
                         SizedBox(height: 10),
                         Text(
-                          snapshot.data.docs[0]['title'], style: TextStyle(color: Colors.blueAccent, fontSize: 20),
+                          snapshot.data.docs[0]['title'], style: GoogleFonts.lato(color: Colors.blueAccent, fontSize: 20),
                         ),
                       ],
                     ),
@@ -50,7 +53,7 @@ class _FaqViewState extends State<FaqView> {
                   children: <Widget>[
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(snapshot.data.docs[0]['sub'],style: TextStyle(color: Colors.black, fontSize: 15)
+                      child: Text(snapshot.data.docs[0]['sub'],style: GoogleFonts.lato(color: Colors.black, fontSize: 15)
                     ),
                     )
                   ],
@@ -68,11 +71,11 @@ class _FaqViewState extends State<FaqView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "Question 2", style: TextStyle(color: Colors.blueAccent.shade700, fontSize: 25)
+                          "Question 2", style: GoogleFonts.lato(color: Colors.blueAccent.shade700, fontSize: 25)
                         ),
                         SizedBox(height: 10),
                         Text(
-                          snapshot.data.docs[1]['title'], style: TextStyle(color: Colors.blueAccent, fontSize: 20),
+                          snapshot.data.docs[1]['title'], style: GoogleFonts.lato(color: Colors.blueAccent, fontSize: 20),
                         ),
                       ],
                     ),
@@ -80,7 +83,7 @@ class _FaqViewState extends State<FaqView> {
                   children: <Widget>[
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 15),
-                      child: Text(snapshot.data.docs[1]['sub'],style: TextStyle(color: Colors.black, fontSize: 15)
+                      child: Text(snapshot.data.docs[1]['sub'],style: GoogleFonts.lato(color: Colors.black, fontSize: 15)
                     ),
                     )
                   ],

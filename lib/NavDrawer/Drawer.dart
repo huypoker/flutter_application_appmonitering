@@ -5,6 +5,7 @@ import 'package:flutter_application_appmonitering/History/history_chart.dart';
 import 'package:flutter_application_appmonitering/Homepage/Homescreen.dart';
 import 'package:flutter_application_appmonitering/Profile/profile_view.dart';
 import 'package:flutter_application_appmonitering/Settings/setting.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -36,7 +37,7 @@ class NavigationDrawer extends StatelessWidget {
                     onClicked: () => selectedItem(context, 0),
                   ),
                   const SizedBox(height:16),
-                  buildMenuItem(
+                  buildMenuItem(  
                     text: 'My account',
                     icon: Icons.people,
                     onClicked: () => selectedItem(context, 1),
@@ -44,7 +45,7 @@ class NavigationDrawer extends StatelessWidget {
                   const SizedBox(height:16),
                   buildMenuItem(
                     text: 'History',
-                    icon: Icons.timelapse_outlined,
+                    icon: Icons.history,
                     onClicked: () => selectedItem(context, 2),
                   ),      
                   const SizedBox(height:24),
@@ -90,7 +91,7 @@ class NavigationDrawer extends StatelessWidget {
                   const SizedBox(height:4),
                   Text(
                     email,
-                    style: TextStyle(fontSize: 14, color: Colors.black),
+                    style: GoogleFonts.lato(fontSize: 14, color: Colors.black),
                   ),
                 ],
               )
@@ -110,7 +111,7 @@ class NavigationDrawer extends StatelessWidget {
 
      return ListTile(
        leading: Icon(icon, color: color),
-       title: Text(text, style: TextStyle(color: color)),
+       title: Text(text, style: GoogleFonts.lato(color: color)),
        hoverColor:hoverColor,
        onTap: onClicked,
      );

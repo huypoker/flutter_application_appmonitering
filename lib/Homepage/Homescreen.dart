@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
         extendBodyBehindAppBar: true,
         appBar : AppBar(
           title: Text('Home Page',
-            style: GoogleFonts.montserrat()
+            style: GoogleFonts.lato()
             ),
           centerTitle: true,
           backgroundColor: Colors.transparent,
@@ -94,14 +94,12 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
           builder: (context, snapshot) {
             if (snapshot.hasData && !snapshot.hasError && snapshot.data.snapshot.value != null) {
               var timestamp = snapshot.data.snapshot.value["currentTimestamp"] ?? 0;
-
               if (currentTimestamp < timestamp) {
                 Data data = new Data(
                   temperature: snapshot.data.snapshot.value["Temperature"][timestamp.toString()],
                   ph: snapshot.data.snapshot.value["pH"][timestamp.toString()],
                   tds: snapshot.data.snapshot.value["TDS"][timestamp.toString()],
-                );
-  
+                ); 
                 if (data.isNotNull()) {
                   if (data.temperature < 40 && data.ph >= 5.5 && data.ph <= 9 && data.tds < 500)
                     status = 'Good';
@@ -117,7 +115,6 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                 }
               }
             }
-
             return Container(
               child: Stack(
                 children: [
@@ -366,7 +363,7 @@ class _HomeScreenState extends State<HomeScreen>  with SingleTickerProviderState
                                       Column(
                                         children: [
                                           Text(
-                                          'Warter speed',
+                                          'Water speed',
                                           style: GoogleFonts.lato(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,

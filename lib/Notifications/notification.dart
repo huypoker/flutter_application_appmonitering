@@ -10,7 +10,7 @@ class Notifications extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notifications',style: GoogleFonts.montserrat()),
+        title: Text('Notifications',style: GoogleFonts.lato()),
         centerTitle: true,
         automaticallyImplyLeading: false,     
         leading: IconButton(

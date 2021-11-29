@@ -57,7 +57,7 @@ class _SignupState extends State<Signup> {
                 child: Column(
                   children: [
                     Container(
-                      child: Text("Sign Up",style: GoogleFonts.montserrat(
+                      child: Text("Sign Up",style: GoogleFonts.lato(
                         color: Color(0xFF6B6B6B),  
                         fontSize: 35, 
                         fontWeight: FontWeight.bold),
@@ -79,7 +79,7 @@ class _SignupState extends State<Signup> {
                             icon: Icon(Icons.email, color: Colors.indigo) ,
                             border: InputBorder.none,
                             hintText: "Email",
-                            hintStyle: GoogleFonts.montserrat(color: Colors.grey)
+                            hintStyle: GoogleFonts.lato(color: Colors.grey)
                             ),
                           ),    
                       ),
@@ -107,7 +107,7 @@ class _SignupState extends State<Signup> {
                           icon: Icon(Icons.lock, color: Colors.indigo),
                           border: InputBorder.none,
                           hintText: "Password",
-                          hintStyle: GoogleFonts.montserrat(color: Colors.grey),
+                          hintStyle: GoogleFonts.lato(color: Colors.grey),
                           suffixIcon: IconButton(
                             icon:Icon(
                               _passwordVisible
@@ -147,7 +147,7 @@ class _SignupState extends State<Signup> {
                             icon: Icon(Icons.lock, color: Colors.indigo),
                             border: InputBorder.none,
                             hintText: "Retype-password",
-                            hintStyle: GoogleFonts.montserrat(color: Colors.grey),
+                            hintStyle: GoogleFonts.lato(color: Colors.grey),
                             suffixIcon: IconButton(
                             icon:Icon(
                               _passwordVisible
@@ -199,7 +199,7 @@ class _SignupState extends State<Signup> {
                             ) 
                             : Text(
                               "Confirm", 
-                              style: GoogleFonts.montserrat(
+                              style: GoogleFonts.lato(
                                 fontSize: 20, 
                                 color: Colors.white, 
                                 fontWeight: FontWeight.bold),
@@ -212,7 +212,7 @@ class _SignupState extends State<Signup> {
                       onTap: () => widget.toggleScreen(),
                       child: Text(
                         "Have an account",
-                      style: GoogleFonts.montserrat(
+                      style: GoogleFonts.lato(
                         color: Colors.red[800] ,
                         fontWeight: FontWeight.bold
                         ),

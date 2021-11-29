@@ -38,9 +38,10 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Settings", style:  GoogleFonts.montserrat(
+        title: Text("Settings", style: GoogleFonts.lato(
           fontSize:22)
         ),
+        centerTitle: true,
         leading: IconButton(
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder:(context) => HomeScreen()));
@@ -63,7 +64,7 @@ class _SettingsState extends State<Settings> {
                   color: Colors. blue,
                 ),
                 SizedBox(width: 10),
-                Text("Notifications", style: GoogleFonts.montserrat(
+                Text("Notifications", style: GoogleFonts.lato(
                   fontSize: 22, 
                   fontWeight: FontWeight.bold))
               ]
@@ -86,7 +87,7 @@ class _SettingsState extends State<Settings> {
                   FirebaseAuth.instance.signOut();
                   Navigator.push(context, MaterialPageRoute(builder:(context) => Login()));
                 },
-                child: Text("SIGN OUT", style: GoogleFonts.montserrat(
+                child: Text("SIGN OUT", style: GoogleFonts.lato(
                   fontSize: 16,
                   letterSpacing: 2.2,
                   color: Colors.black
@@ -105,7 +106,7 @@ class _SettingsState extends State<Settings> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(title, style: GoogleFonts.montserrat(
+            Text(title, style: GoogleFonts.lato(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.grey[600]

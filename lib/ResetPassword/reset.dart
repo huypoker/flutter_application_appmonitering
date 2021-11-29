@@ -37,7 +37,7 @@ class _ResetScreenState extends State<ResetScreen> {
                     children: [
                       Container(
                         margin: EdgeInsets.only(top: 10),
-                        child: Text("Reset Password",style: GoogleFonts.montserrat(
+                        child: Text("Reset Password",style: GoogleFonts.lato(
                           color: Color(0xFF6b8ae7), 
                           fontSize: 35, 
                           fontWeight: FontWeight.bold),
@@ -58,7 +58,7 @@ class _ResetScreenState extends State<ResetScreen> {
                               icon: Icon(Icons.email, color: Colors.indigo),
                               border: InputBorder.none,
                               hintText: "Email",
-                              hintStyle: GoogleFonts.montserrat(color: Colors.grey)
+                              hintStyle: GoogleFonts.lato(color: Colors.grey)
                               ),
                               onChanged: (value){
                                 setState(() {

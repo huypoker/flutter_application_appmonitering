@@ -36,7 +36,7 @@ class _InforUserListState extends State<InforUserList> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(left: 20, top: 10),
-                      child: Text("Display Name:",style: GoogleFonts.montserrat(
+                      child: Text("Display Name:",style: GoogleFonts.lato(
                         color: Color(0xFF6b8ae7), 
                         fontSize: 18, 
                         fontWeight: FontWeight.bold),
@@ -67,7 +67,7 @@ class _InforUserListState extends State<InforUserList> {
                   ),
                   child: Text(
                     'Update',
-                    style: TextStyle(color: Colors.black),
+                    style: GoogleFonts.lato(color: Colors.black),
                   ),
                   onPressed: () async {
                     if(_formKey.currentState.validate()){
